@@ -1,4 +1,23 @@
+<div class="column search-form">
 <form id="search" data-ng-submit="search()">
-	<input id="query" name="q" type="text" placeholder="Search for a YouTube video" data-ng-model="query">
-	<input id="submit" type="image" value="submit" alt="Search">
+  <input id="query" name="q" type="text" placeholder="Search for a YouTube video" data-ng-model="query">
+  <button type="submit"><i class="icon-search"></i></button>
 </form>
+</div>
+<div class="column search-results">
+  <div class="video" data-ng-repeat="video in results" data-ng-click="queue(video.id, video.title)">
+    <img data-ng-src="{{ video.thumbnail }}">
+    <p class="title">{{ video.title }}</p>
+    <p class="description">{{ video.description }}</p>
+  </div>
+</div>
+<div id="playerContainer">
+  <div id="player"></div>
+</div>
+<p>{{currentVideo}}</p>
+<div class="column queue-list">
+  <div class="playlist" data-ng-repeat="video in playlist">
+      <p class="item-title" data-ng-click="launch(video.id, video.title, video.position)">{{video.title}}</p>
+      <i class="icon-trash-empty" data-ng-click="deleteVideo(video.position)"></i>
+    </div>
+</div>
